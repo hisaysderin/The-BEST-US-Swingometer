@@ -231,9 +231,12 @@ namespace The_BEST_US_Swingometer
                     {
                         if (singleInputArea.state == state.name)
                         {
-                            OutputAreas.Add(Swingometer(singleInputArea, state.democraticPercentage - midHouseStates[counter].democraticPercentage,
-                                state.republicanPercentage - midHouseStates[counter].republicanPercentage,
-                                state.otherPercentage - midHouseStates.[counter].otherPercentage));
+                            // the big numbers are necessary, but not used (they are padding)
+                            // they are big so if something goes wrong its very obvious
+
+                            OutputAreas.Add(Swingometer(singleInputArea, new List<double>{1000000.0, state.democraticPercentage - midHouseStates[counter].democraticPercentage, 1000000.0},
+                                new List<double> {1000000.0, state.republicanPercentage - midHouseStates[counter].republicanPercentage, 1000000.0 },
+                                new List<double> {1000000.0, state.otherPercentage - midHouseStates[counter].otherPercentage, 1000000.0}));
                         }
 
                         counter += 1;
