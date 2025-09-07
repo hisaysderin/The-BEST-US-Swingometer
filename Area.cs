@@ -63,7 +63,7 @@ namespace The_BEST_US_Swingometer
 
             else if (otherPercentage > democraticPercentage && otherPercentage > democraticPercentage)
             {
-                if (otherPercentage > democraticPercentage)
+                if (democraticPercentage > republicanPercentage)
                 {
                     winningMargin = "I + " + Convert.ToString(Math.Round(otherPercentage - democraticPercentage, 2));
                 }
