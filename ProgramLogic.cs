@@ -14,9 +14,14 @@ namespace The_BEST_US_Swingometer
         public Party Democrats = new Party();
         public Party Others = new Party();
 
-        public int mode; // used in swingometer to differentiate between Presidential, House or Senate (0, 1 or 2)
         public Area tempArea; // used in swingometer
+        public int mode;
         public FileHandler Files;
+        public List<Area> inputAreas = new List<Area>();
+
+        public List<Area> inputHouseStates = new List<Area>(); // only used when calculating house results
+        public List<Area> midHouseStates = new List<Area>(); // used to calculate swings
+        public int counter = 0;
 
         public List<Area> OutputAreas;
 
@@ -61,7 +66,7 @@ namespace The_BEST_US_Swingometer
         }
 
         // the program will cycle through a list of areas, doing this function on each of them, producing a new list of areas
-        public Area Swingometer(Area currentArea)
+        public Area Swingometer(Area currentArea, List<double> inputDem, List<double> inputGop, List<double> inputOth)
         {
             Setup();
 
@@ -81,9 +86,9 @@ namespace The_BEST_US_Swingometer
             }
 
             tempArea = new Area(currentArea.name, currentArea.shortName, currentArea.type, currentArea.electoralValue, currentArea.previousWinner,
-                currentArea.republicanPercentage + Republicans.newPercentages[mode],
-                currentArea.democraticPercentage + Democrats.newPercentages[mode],
-                currentArea.otherPercentage + Others.newPercentages[mode]);
+                currentArea.republicanPercentage + inputGop[mode],
+                currentArea.democraticPercentage + inputDem[mode],
+                currentArea.otherPercentage + inputOth[mode]);
             tempArea.CalculateMargin();
 
             if (currentArea.state != null)
@@ -91,8 +96,8 @@ namespace The_BEST_US_Swingometer
                 tempArea.state = currentArea.state;
             }
 
-            if (currentArea.republicanPercentage + Republicans.newPercentages[mode] > currentArea.democraticPercentage + Democrats.newPercentages[mode] &&
-                currentArea.republicanPercentage + Republicans.newPercentages[mode] > currentArea.otherPercentage + Others.newPercentages[mode]) // GOP win
+            if (currentArea.republicanPercentage + inputGop[mode] > currentArea.democraticPercentage + inputDem[mode] &&
+                currentArea.republicanPercentage + inputGop[mode] > currentArea.otherPercentage + inputOth[mode]) // GOP win
             {
                 switch (currentArea.type)
                 {
@@ -119,8 +124,8 @@ namespace The_BEST_US_Swingometer
                 }
             }
 
-            else if (currentArea.democraticPercentage + Democrats.newPercentages[mode] > currentArea.republicanPercentage + Republicans.newPercentages[mode] &&
-                     currentArea.democraticPercentage + Democrats.newPercentages[mode] > currentArea.otherPercentage + Others.newPercentages[mode]) // DEM win
+            else if (currentArea.democraticPercentage + inputDem[mode] > currentArea.republicanPercentage + inputGop[mode] &&
+                     currentArea.democraticPercentage + inputDem[mode] > currentArea.otherPercentage + inputOth[mode]) // DEM win
             {
                 switch (currentArea.type)
                 {
@@ -147,8 +152,8 @@ namespace The_BEST_US_Swingometer
                 }
             }
 
-            else if (currentArea.otherPercentage + Others.newPercentages[mode] > currentArea.republicanPercentage + Republicans.newPercentages[mode] &&
-                currentArea.otherPercentage + Others.newPercentages[mode] > currentArea.democraticPercentage + Democrats.newPercentages[mode]) // OTH win
+            else if (currentArea.otherPercentage + inputOth[mode] > currentArea.republicanPercentage + inputGop[mode] &&
+                currentArea.otherPercentage + inputOth[mode] > currentArea.democraticPercentage + inputDem[mode]) // OTH win
             {
                 switch (currentArea.type)
                 {
@@ -181,19 +186,60 @@ namespace The_BEST_US_Swingometer
             }
         }
 
-        public void GetOutput()
+        public void GetOutput(int mode) // 0 for pres, 1 for house, 2 for senate
         {
             switch (mode)
             {
                 case 0:
                     Files.filePath = "..\\presidential.csv";
+                    Files.ParseFile("Presidential");
                     break;
                 case 1:
-                    Files.filePath = "..\\house_by_district.csv";
+                    Files.filePath = "..\\house_by_state.csv";
+                    Files.ParseFile("Meta");
                     break;
                 case 2:
                     Files.filePath = "..\\senate.csv";
+                    Files.ParseFile("Senate");
                     break;
+            }
+
+            inputAreas = Files.fileAreas;
+
+            if (mode != 2)
+            {
+                foreach (Area singleInputArea in inputAreas)
+                {
+                    OutputAreas.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
+                }
+            }
+            else //for the house, we do the state by state results, and then for each district we use the state change
+            {
+                foreach (Area singleInputArea in inputAreas)
+                {
+                    inputHouseStates.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
+                    midHouseStates.Add(singleInputArea);
+                }
+
+                Files.filePath = "..\\house_by_district.csv";
+                Files.ParseFile("House");
+                inputAreas = Files.fileAreas;
+
+                foreach (Area singleInputArea in inputAreas)
+                {
+                    foreach (Area state in inputHouseStates)
+                    {
+                        if (singleInputArea.state == state.name)
+                        {
+                            OutputAreas.Add(Swingometer(singleInputArea, state.democraticPercentage - midHouseStates[counter].democraticPercentage,
+                                state.republicanPercentage - midHouseStates[counter].republicanPercentage,
+                                state.otherPercentage - midHouseStates.[counter].otherPercentage));
+                        }
+
+                        counter += 1;
+                    }
+                }
+
             }
         }
         
