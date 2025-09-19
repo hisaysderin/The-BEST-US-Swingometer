@@ -12,6 +12,9 @@ namespace The_BEST_US_Swingometer
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
