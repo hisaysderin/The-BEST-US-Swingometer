@@ -12,12 +12,6 @@ namespace The_BEST_US_Swingometer
         public double number;
         public string complete;
 
-        public Margin(string winner, double number)
-        {
-            this.winner = winner;
-            this.number = number;
-        }
-
         public void createComplete()
         {
             complete = winner + Convert.ToString(number);
