@@ -19,5 +19,17 @@ namespace The_BEST_US_Swingometer
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e) // clears textboxes
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            textBox2.Clear();
+        }
     }
 }

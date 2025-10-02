@@ -57,6 +57,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Margin.cs" />
     <Compile Include="Party.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramLogic.cs" />

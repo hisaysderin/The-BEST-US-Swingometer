@@ -18,7 +18,8 @@ namespace The_BEST_US_Swingometer
         public double democraticPercentage;
         public double otherPercentage;
 
-        public string winningMargin;
+        //public string winningMargin;
+        public Margin winningMargin;
         public string finalResult;
 
         public string state; // for house districts
@@ -39,39 +40,47 @@ namespace The_BEST_US_Swingometer
         {
             if (republicanPercentage > democraticPercentage && republicanPercentage > otherPercentage)
             {
+                winningMargin.winner = "R";
+
                 if (democraticPercentage > otherPercentage)
                 {
-                    winningMargin = "R + " + Convert.ToString(Math.Round(republicanPercentage - democraticPercentage, 2));
+                    winningMargin.number = Math.Round(republicanPercentage - democraticPercentage, 2);
                 }
                 else
                 {
-                    winningMargin = "R + " + Convert.ToString(Math.Round(republicanPercentage - otherPercentage, 2));
+                    winningMargin.number = Math.Round(republicanPercentage - otherPercentage, 2);
                 }
             }
 
             else if (democraticPercentage > republicanPercentage && democraticPercentage > otherPercentage)
             {
+                winningMargin.winner = "D";
+
                 if (republicanPercentage > otherPercentage)
                 {
-                    winningMargin = "D + " + Convert.ToString(Math.Round(democraticPercentage - republicanPercentage, 2));
+                    winningMargin.number = Math.Round(democraticPercentage - republicanPercentage, 2);
                 }
                 else
                 {
-                    winningMargin = "D + " + Convert.ToString(Math.Round(democraticPercentage - otherPercentage, 2));
+                    winningMargin.number = Math.Round(democraticPercentage - otherPercentage, 2);
                 }
             }
 
             else if (otherPercentage > democraticPercentage && otherPercentage > democraticPercentage)
             {
+                winningMargin.winner = "I";
+
                 if (democraticPercentage > republicanPercentage)
                 {
-                    winningMargin = "I + " + Convert.ToString(Math.Round(otherPercentage - democraticPercentage, 2));
+                    winningMargin.number = Math.Round(otherPercentage - democraticPercentage, 2);
                 }
                 else
                 {
-                    winningMargin = "I + " + Convert.ToString(Math.Round(otherPercentage - republicanPercentage, 2));
+                    winningMargin.number = Math.Round(otherPercentage - republicanPercentage, 2);
                 }
             }
+
+            winningMargin.createComplete();
         }
     }
 }
