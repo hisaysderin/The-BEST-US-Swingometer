@@ -211,6 +211,13 @@ namespace The_BEST_US_Swingometer
                 foreach (Area singleInputArea in inputAreas)
                 {
                     OutputAreas.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
+
+                    if (mode == 1)
+                    {
+                        Democrats.CalculateSenate();
+                        Republicans.CalculateSenate();
+                    }
+
                 }
             }
             else //for the house, we do the state by state results, and then for each district we use the state change
@@ -242,6 +249,9 @@ namespace The_BEST_US_Swingometer
                         counter += 1;
                     }
                 }
+
+                Democrats.CalculateHouseChange();
+                Republicans.CalculateHouseChange();
 
             }
         }

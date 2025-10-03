@@ -19,6 +19,7 @@ namespace The_BEST_US_Swingometer
 
         public int lastHouseSeats;
         public int newHouseSeats = 0;
+        public int houseChange;
 
         public int lastSenateSeats;
         public int heldSenateSeats; // some seats are not up for re-election
@@ -36,6 +37,10 @@ namespace The_BEST_US_Swingometer
         public void CalculateSenate()
         {
             totalSenateSeats = heldSenateSeats + newSenateSeats;
+        }
+        public void CalculateHouseChange()
+        {
+            houseChange = newHouseSeats - lastHouseSeats;
         }
     }
 }
