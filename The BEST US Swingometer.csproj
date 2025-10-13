@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" />
+  <Import Project="packages\EGIS.ShapeFileLib.4.8.8\build\net47\EGIS.ShapeFileLib.props" Condition="Exists('packages\EGIS.ShapeFileLib.4.8.8\build\net47\EGIS.ShapeFileLib.props')" />
+  <Import Project="packages\EGIS.Projections.4.8.8\build\net47\EGIS.Projections.props" Condition="Exists('packages\EGIS.Projections.4.8.8\build\net47\EGIS.Projections.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +15,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,8 +41,43 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EGIS.Controls, Version=4.8.8.0, Culture=neutral, PublicKeyToken=05b98c869b5ffe6a, processorArchitecture=MSIL">
+      <HintPath>packages\EGIS.Controls.4.8.8\lib\net472\EGIS.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="EGIS.Projections, Version=4.8.8.0, Culture=neutral, PublicKeyToken=05b98c869b5ffe6a, processorArchitecture=MSIL">
+      <HintPath>packages\EGIS.Projections.4.8.8\lib\net47\EGIS.Projections.dll</HintPath>
+    </Reference>
+    <Reference Include="EGIS.ShapeFileLib, Version=4.8.8.0, Culture=neutral, PublicKeyToken=05b98c869b5ffe6a, processorArchitecture=MSIL">
+      <HintPath>packages\EGIS.ShapeFileLib.4.8.8\lib\net47\EGIS.ShapeFileLib.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=2.0.2.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.2.0.2\lib\net471\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=2.0.2.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.EF6.2.0.2\lib\net471\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Linq.1.0.119.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Area.cs" />
+    <Compile Include="CustomColour.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -57,7 +98,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Image.cs" />
+    <Compile Include="MapHandler.cs" />
     <Compile Include="Margin.cs" />
     <Compile Include="Party.cs" />
     <Compile Include="Program.cs" />
@@ -77,6 +118,7 @@
     </Compile>
     <None Include="house_by_district.csv" />
     <None Include="house_by_state.csv" />
+    <None Include="packages.config" />
     <None Include="presidential.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -88,9 +130,40 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="senate.csv" />
+    <None Include="shapefile\house\congress.dbf" />
+    <None Include="shapefile\house\congress.prj" />
+    <None Include="shapefile\house\congress.shp" />
+    <None Include="shapefile\house\congress.shx" />
+    <None Include="shapefile\house\congress_albersusa.dbf" />
+    <None Include="shapefile\house\congress_albersusa.prj" />
+    <None Include="shapefile\house\congress_albersusa.shp" />
+    <None Include="shapefile\house\congress_albersusa.shx" />
+    <None Include="shapefile\test\cb_2018_us_state_500k.cpg" />
+    <None Include="shapefile\test\cb_2018_us_state_500k.dbf" />
+    <None Include="shapefile\test\cb_2018_us_state_500k.prj" />
+    <None Include="shapefile\test\cb_2018_us_state_500k.shp" />
+    <None Include="shapefile\test\cb_2018_us_state_500k.shx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="geomutil_lib.dll" />
+    <Content Include="geomutil_libx64.dll" />
+    <Content Include="shapefile\house\congress.svg" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EGIS.Projections.4.8.8\build\net47\EGIS.Projections.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EGIS.Projections.4.8.8\build\net47\EGIS.Projections.props'))" />
+    <Error Condition="!Exists('packages\EGIS.ShapeFileLib.4.8.8\build\net47\EGIS.ShapeFileLib.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EGIS.ShapeFileLib.4.8.8\build\net47\EGIS.ShapeFileLib.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
+  <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
 </Project>

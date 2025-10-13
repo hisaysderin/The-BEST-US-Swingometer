@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,10 @@ namespace The_BEST_US_Swingometer
         public double democraticPercentage;
         public double otherPercentage;
 
-        //public string winningMargin;
-        public Margin winningMargin;
+        public Margin winningMargin = new Margin();
         public string finalResult;
+        public string colour;
+        public Color realColour;
 
         public string state; // for house districts
 
@@ -82,5 +84,74 @@ namespace The_BEST_US_Swingometer
 
             winningMargin.createComplete();
         }
+
+        public void GetColour()
+        {
+            switch (winningMargin.winner)
+            {
+                case "D":
+
+                    if (winningMargin.number < 1)
+                    {
+                        colour = "#949BB3";
+                    }
+                    else if (winningMargin.number >= 1 && winningMargin.number < 5)
+                    {
+                        colour = "#8AAFFF";
+                    }
+                    else if (winningMargin.number >= 5 && winningMargin.number < 10)
+                    {
+                        colour = "#577CCC";
+                    }
+                    else if (winningMargin.number >= 10 && winningMargin.number < 20)
+                    {
+                        colour = "#0023D1";
+                    }
+                    else if (winningMargin.number >= 20 && winningMargin.number < 30)
+                    {
+                        colour = "#1C408C";
+                    }
+                    else if (winningMargin.number > 30)
+                    {
+                        colour = "#1D2A5D";
+                    }
+                    break;
+
+                case "R":
+                    if (winningMargin.number < 1)
+                    {
+                        colour = "#CF8980";
+                    }
+                    else if (winningMargin.number >= 1 && winningMargin.number < 5)
+                    {
+                        colour = "#FF8B98";
+                    }
+                    else if (winningMargin.number >= 5 && winningMargin.number < 10)
+                    {
+                        colour = "#FF5865";
+                    }
+                    else if (winningMargin.number >= 10 && winningMargin.number < 20)
+                    {
+                        colour = "#FF0026";
+                    }
+                    else if (winningMargin.number >= 20 && winningMargin.number < 30)
+                    {
+                        colour = "#BF1D29";
+                    }
+                    else if (winningMargin.number > 30)
+                    {
+                        colour = "#610000";
+                    }
+                    break;
+
+                case "I":
+                    colour = "#F1C92A";
+                    break;
+            }
+
+            realColour = ColorTranslator.FromHtml(colour);
+
+        }
+
     }
 }

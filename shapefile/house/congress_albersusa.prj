@@ -1,0 +1,1 @@
+PROJCS["UNK / Albers_Conic_Equal_Area",GEOGCS["UNK",DATUM["Unknown datum",SPHEROID["WGS 84",6378137,298.257223563]],PRIMEM["Greenwich",0],UNIT["degree",0.017453292519943295]],PROJECTION["Albers_Conic_Equal_Area"],PARAMETER["central_meridian",-96],PARAMETER["latitude_of_center",37.5],PARAMETER["standard_parallel_1",29.5],PARAMETER["standard_parallel_2",45.5],UNIT["Meter",1]]

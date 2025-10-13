@@ -11,8 +11,8 @@ namespace The_BEST_US_Swingometer
     public class FileHandler
     {
         public string fileContents;
-        public string[] itemData;
-        public string filePath;
+        public List<string> itemData;
+        public string filePath = "";
 
         public string[] dataPoints;
         public Area tempArea;
@@ -23,7 +23,8 @@ namespace The_BEST_US_Swingometer
             fileContents = File.ReadAllText(filePath);
 
             // split each item up
-            itemData = fileContents.Split('\n');
+            itemData = fileContents.Split('\n').ToList();
+            itemData.RemoveAt(0);
 
             foreach (string item in itemData)
             {

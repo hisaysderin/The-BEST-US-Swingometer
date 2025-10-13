@@ -2,6 +2,7 @@ Name,Short name,Electoral value,Previous winner,GOP %,DEM %,OTH %
 Alabama,AL,9,GOP,64.57,34.1,1.33
 Alaska,AK,3,GOP,54.54,41.41,4.05
 Arizona,AZ,11,GOP,52.22,46.69,1.09
+Arkansas,AR,6,GOP,64.20,33.56,2.24
 California,CA,54,DEM,38.33,58.47,3.2
 Colorado,CO,10,DEM,43.14,54.13,2.73
 Connecticut,CT,7,DEM,41.89,56.4,1.71
@@ -17,7 +18,7 @@ Iowa,IA,6,GOP,55.73,42.52,1.75
 Kansas,KS,6,GOP,57.16,41.04,1.8
 Kentucky,KY,8,GOP,64.47,33.94,1.59
 Louisiana,LA,8,GOP,60.22,38.21,1.57
-Maine (at-large),ME-AL,2,DEM,45.46,52.4,2.14
+Maine,ME-AL,2,DEM,45.46,52.4,2.14
 Maine 1st,ME-01,1,DEM,38.09,59.69,2.22
 Maine 2nd,ME-02,1,GOP,53.5,44.46,2.04
 Maryland,MD,10,DEM,34.08,62.62,3.3
@@ -27,7 +28,7 @@ Minnesota,MN,10,DEM,46.68,50.92,2.4
 Mississippi,MS,6,GOP,60.89,38,1.11
 Missouri,MO,10,GOP,58.49,40.08,1.43
 Montana,MT,4,GOP,58.39,38.46,3.15
-Nebraska (at-large),NE-AL,2,GOP,59.32,38.86,1.82
+Nebraska,NE-AL,2,GOP,59.32,38.86,1.82
 Nebraska 1st,NE-01,1,GOP,55.49,42.52,1.99
 Nebraska 2nd,NE-02,1,DEM,46.73,51.32,1.95
 Nebraska 3rd,NE-03,1,GOP,76.03,22.44,1.53

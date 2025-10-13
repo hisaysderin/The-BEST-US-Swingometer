@@ -5,6 +5,7 @@ using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace The_BEST_US_Swingometer
 {
@@ -14,16 +15,20 @@ namespace The_BEST_US_Swingometer
         public Party Democrats = new Party();
         public Party Others = new Party();
 
+        public double inputD;
+        public double inputR;
+        public double inputI;
+
         public Area tempArea; // used in swingometer
         public int mode;
-        public FileHandler Files;
+        public FileHandler Files = new FileHandler();
         public List<Area> inputAreas = new List<Area>();
 
         public List<Area> inputHouseStates = new List<Area>(); // only used when calculating house results
         public List<Area> midHouseStates = new List<Area>(); // used to calculate swings
         public int counter = 0;
 
-        public List<Area> OutputAreas;
+        public List<Area> OutputAreas = new List<Area>();
 
         public void Setup()
         {
@@ -31,7 +36,7 @@ namespace The_BEST_US_Swingometer
             // GOP data
             Republicans.name = "GOP";
 
-            Republicans.userPercentage = 0; //CHANGE THIS WHEN WE DO THE GUI
+            Republicans.userPercentage = inputR; //CHANGE THIS WHEN WE DO THE GUI
             Republicans.lastPercentages = new List<double> { 49.8, 49.8, 49.3};
             Republicans.CalculateSwing();
 
@@ -43,7 +48,7 @@ namespace The_BEST_US_Swingometer
             // DEM data
             Democrats.name = "DEM";
 
-            Democrats.userPercentage = 0; //CHANGE THIS WHEN WE DO THE GUI
+            Democrats.userPercentage = inputD;
             Democrats.lastPercentages = new List<double> { 48.3, 47.2, 47.0};
             Democrats.CalculateSwing();
 
@@ -55,7 +60,7 @@ namespace The_BEST_US_Swingometer
             // OTH data
             Others.name = "OTH";
 
-            Others.userPercentage = 0; //CHANGE THIS WHEN WE DO THE GUI
+            Others.userPercentage = inputI; //CHANGE THIS WHEN WE DO THE GUI
             Others.lastPercentages = new List<double> { 1.9, 3.0, 3.2};
             Others.CalculateSwing();
 
@@ -63,6 +68,8 @@ namespace The_BEST_US_Swingometer
             Others.lastHouseSeats = 0;
             Others.lastSenateSeats = 2;
             Others.heldSenateSeats = 2;
+
+            counter = 0;
         }
 
         // the program will cycle through a list of areas, doing this function on each of them, producing a new list of areas
@@ -90,6 +97,7 @@ namespace The_BEST_US_Swingometer
                 currentArea.democraticPercentage + inputDem[mode],
                 currentArea.otherPercentage + inputOth[mode]);
             tempArea.CalculateMargin();
+            tempArea.GetColour();
 
             if (currentArea.state != null)
             {
@@ -191,69 +199,78 @@ namespace The_BEST_US_Swingometer
             switch (mode)
             {
                 case 0:
-                    Files.filePath = "..\\presidential.csv";
+                    Files.filePath = "..\\..\\presidential.csv";
                     Files.ParseFile("Presidential");
                     break;
                 case 1:
-                    Files.filePath = "..\\house_by_state.csv";
-                    Files.ParseFile("Meta");
+                    Files.filePath = "..\\..\\house_by_district.csv";
+                    Files.ParseFile("House");
                     break;
                 case 2:
-                    Files.filePath = "..\\senate.csv";
+                    Files.filePath = "..\\..\\senate.csv";
                     Files.ParseFile("Senate");
                     break;
             }
 
             inputAreas = Files.fileAreas;
 
-            if (mode != 2)
+            if (mode != 1)
             {
                 foreach (Area singleInputArea in inputAreas)
                 {
                     OutputAreas.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
 
-                    if (mode == 1)
-                    {
-                        Democrats.CalculateSenate();
-                        Republicans.CalculateSenate();
-                    }
+                }
 
+                if (mode == 2)
+                {
+                    Democrats.CalculateSenate();
+                    Republicans.CalculateSenate();
                 }
             }
             else //for the house, we do the state by state results, and then for each district we use the state change
             {
                 foreach (Area singleInputArea in inputAreas)
                 {
-                    inputHouseStates.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
-                    midHouseStates.Add(singleInputArea);
+                    OutputAreas.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
                 }
 
-                Files.filePath = "..\\house_by_district.csv";
-                Files.ParseFile("House");
-                inputAreas = Files.fileAreas;
+                //foreach (Area singleInputArea in inputAreas)
+                //{
+                //    inputHouseStates.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
+                //    midHouseStates.Add(singleInputArea);
+                //}
 
-                foreach (Area singleInputArea in inputAreas)
-                {
-                    foreach (Area state in inputHouseStates)
-                    {
-                        if (singleInputArea.state == state.name)
-                        {
-                            // the big numbers are necessary, but not used (they are padding)
-                            // they are big so if something goes wrong its very obvious
+                //Files.filePath = "..\\..\\house_by_district.csv";
+                //Files.ParseFile("House");
+                //inputAreas = Files.fileAreas;
 
-                            OutputAreas.Add(Swingometer(singleInputArea, new List<double>{1000000.0, state.democraticPercentage - midHouseStates[counter].democraticPercentage, 1000000.0},
-                                new List<double> {1000000.0, state.republicanPercentage - midHouseStates[counter].republicanPercentage, 1000000.0 },
-                                new List<double> {1000000.0, state.otherPercentage - midHouseStates[counter].otherPercentage, 1000000.0}));
-                        }
+                //foreach (Area singleInputArea in inputAreas)
+                //{
+                //    foreach (Area state in inputHouseStates)
+                //    {
+                //        //MessageBox.Show((singleInputArea.state == state.name).ToString());
+                //        if (singleInputArea.state == state.name)
+                //        {
 
-                        counter += 1;
-                    }
-                }
+                //            // the big numbers are necessary, but not used (they are padding)
+                //            // they are big so if something goes wrong its very obvious
 
-                Democrats.CalculateHouseChange();
-                Republicans.CalculateHouseChange();
+                //            OutputAreas.Add(Swingometer(singleInputArea, new List<double>{1000000.0, state.democraticPercentage - midHouseStates[counter].democraticPercentage, 1000000.0},
+                //                new List<double> {1000000.0, state.republicanPercentage - midHouseStates[counter].republicanPercentage, 1000000.0 },
+                //                new List<double> {1000000.0, state.otherPercentage - midHouseStates[counter].otherPercentage, 1000000.0}));
 
+                //            counter += 1;
+                //        }
+
+
+                //    }
             }
+
+            Democrats.CalculateHouseChange();
+            Republicans.CalculateHouseChange();
+
+            
         }
         
     }

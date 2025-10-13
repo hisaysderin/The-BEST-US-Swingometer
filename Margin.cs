@@ -14,7 +14,7 @@ namespace The_BEST_US_Swingometer
 
         public void createComplete()
         {
-            complete = winner + Convert.ToString(number);
+            complete = winner + "+" + Convert.ToString(number);
         }
     }
 }

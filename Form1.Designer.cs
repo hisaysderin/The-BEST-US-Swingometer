@@ -35,6 +35,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.sfMap1 = new EGIS.Controls.SFMap();
             this.SuspendLayout();
             // 
             // textBox1
@@ -46,7 +49,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(873, 134);
+            this.textBox2.Location = new System.Drawing.Point(873, 111);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(222, 22);
             this.textBox2.TabIndex = 1;
@@ -63,7 +66,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(870, 115);
+            this.label2.Location = new System.Drawing.Point(870, 92);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(197, 16);
             this.label2.TabIndex = 3;
@@ -72,16 +75,17 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(873, 214);
+            this.button1.Location = new System.Drawing.Point(873, 258);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(224, 40);
             this.button1.TabIndex = 4;
             this.button1.Text = "Submit!";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(873, 260);
+            this.button2.Location = new System.Drawing.Point(873, 304);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(225, 25);
             this.button2.TabIndex = 5;
@@ -98,17 +102,59 @@
             "Presidential",
             "House",
             "Senate"});
-            this.comboBox1.Location = new System.Drawing.Point(872, 175);
+            this.comboBox1.Location = new System.Drawing.Point(872, 219);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(225, 24);
             this.comboBox1.TabIndex = 6;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(870, 159);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(149, 16);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Enter number for Others:";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(872, 178);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(222, 22);
+            this.textBox3.TabIndex = 8;
+            // 
+            // sfMap1
+            // 
+            this.sfMap1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.sfMap1.DefaultMapCursor = System.Windows.Forms.Cursors.Default;
+            this.sfMap1.DefaultSelectionCursor = System.Windows.Forms.Cursors.Hand;
+            this.sfMap1.EnabledSelectKeys = ((EGIS.Controls.SelectKeys)(((EGIS.Controls.SelectKeys.ControlKey | EGIS.Controls.SelectKeys.ShiftKey) 
+            | EGIS.Controls.SelectKeys.AltKey)));
+            this.sfMap1.Location = new System.Drawing.Point(13, 13);
+            this.sfMap1.MapBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.sfMap1.Margin = new System.Windows.Forms.Padding(4);
+            this.sfMap1.MaxZoomLevel = 1.7976931348623157E+308D;
+            this.sfMap1.MinZomLevel = 0D;
+            this.sfMap1.MouseWheelZoomMode = EGIS.Controls.MouseWheelZoomMode.Default;
+            this.sfMap1.Name = "sfMap1";
+            this.sfMap1.PanSelectMode = EGIS.Controls.PanSelectMode.Pan;
+            this.sfMap1.RenderQuality = EGIS.ShapeFileLib.RenderQuality.High;
+            this.sfMap1.Size = new System.Drawing.Size(834, 614);
+            this.sfMap1.TabIndex = 9;
+            this.sfMap1.UseMemoryStreams = false;
+            this.sfMap1.UseMercatorProjection = false;
+            this.sfMap1.ZoomToSelectedExtentWhenCtrlKeydown = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1114, 658);
+            this.Controls.Add(this.sfMap1);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -132,6 +178,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox3;
+        private EGIS.Controls.SFMap sfMap1;
     }
 }
 
