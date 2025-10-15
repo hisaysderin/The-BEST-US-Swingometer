@@ -31,6 +31,8 @@ namespace The_BEST_US_Swingometer
 
             foreach (Area x in areas)
             {
+                theMap.ClearShapeFiles();
+
                 if (x.type == "Presidential" | x.type == "Senate")
                 {
                     areaDic.Add(x.name, x.realColour);

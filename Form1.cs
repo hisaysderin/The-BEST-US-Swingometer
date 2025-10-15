@@ -21,10 +21,12 @@ namespace The_BEST_US_Swingometer
         {
             InitializeComponent();
 
-            ShapeFile test = new ShapeFile("..\\..\\shapefile\\test\\cb_2018_us_state_500k.shp");
-
-            
-
+            panel1.Height = 200;
+            panel1.Location = new System.Drawing.Point(panel1.Location.X, 486 - panel1.Height);
+            panel2.Height = 200;
+            panel2.Location = new System.Drawing.Point(panel2.Location.X, 486 - panel2.Height);
+            panel3.Height = 200;
+            panel3.Location = new System.Drawing.Point(panel3.Location.X, 486 - panel3.Height);
         }
 
         private void button2_Click(object sender, EventArgs e) // clears textboxes
@@ -36,9 +38,9 @@ namespace The_BEST_US_Swingometer
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
+            //textBox1.Clear();
+            //textBox2.Clear();
+            //textBox3.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -102,8 +104,12 @@ namespace The_BEST_US_Swingometer
                     break;
             }
             
-            //theMap.Setup();
             theMap.Colouring();
+
+            ChartHandler charts = new ChartHandler(panel1, panel2, panel3, logic.Democrats, logic.Republicans, logic.Others, comboBox1.SelectedIndex, label4, label5, label6);
+            charts.DrawCharts();
+
+
         }
 
 

@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Area.cs" />
+    <Compile Include="ChartHandler.cs" />
     <Compile Include="CustomColour.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="Form1.cs">

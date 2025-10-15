@@ -111,7 +111,7 @@ namespace The_BEST_US_Swingometer
                     {
                         colour = "#1C408C";
                     }
-                    else if (winningMargin.number > 30)
+                    else if (winningMargin.number >= 30)
                     {
                         colour = "#1D2A5D";
                     }
@@ -138,7 +138,7 @@ namespace The_BEST_US_Swingometer
                     {
                         colour = "#BF1D29";
                     }
-                    else if (winningMargin.number > 30)
+                    else if (winningMargin.number >= 30)
                     {
                         colour = "#610000";
                     }

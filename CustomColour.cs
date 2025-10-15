@@ -66,37 +66,46 @@ public class CustomColour : ICustomRenderSettings
 
         foreach (Area a in areas)
         {
-            //MessageBox.Show(a.name + a.shortName);
             if (a.name == x && (a.type == "Presidential" | a.type == "Senate"))
             {
                 if (a.name == "Maine" && a.type == "Presidential")
                 {
                     return a.name + "\n" + a.finalResult + "\n" + a.winningMargin.complete + "\n\n" +
+                        "\n\nD: " + a.democraticPercentage.ToString() + "\n" + "R: " + a.republicanPercentage.ToString() + "\n" + "I: " + a.otherPercentage.ToString() + "\n\n" +
                         maineOne.name + "\n" + maineOne.finalResult + "\n" + maineOne.winningMargin.complete + "\n\n" +
-                        maineTwo.name + "\n" + maineTwo.finalResult + "\n" + maineTwo.winningMargin.complete;
+                        "\n\nD: " + maineOne.democraticPercentage.ToString() + "\n" + "R: " + maineOne.republicanPercentage.ToString() + "\n" + "I: " + maineOne.otherPercentage.ToString() + "\n\n" +
+                        maineTwo.name + "\n" + maineTwo.finalResult + "\n" + maineTwo.winningMargin.complete +
+                        "\n\nD: " + maineTwo.democraticPercentage.ToString() + "\n" + "R: " + maineTwo.republicanPercentage.ToString() + "\n" + "I: " + maineTwo.otherPercentage.ToString();
                 }
                 else if (a.name == "Nebraska" && a.type == "Presidential")
                 {
                     return a.name + "\n" + a.finalResult + "\n" + a.winningMargin.complete + "\n\n" +
+                        "\n\nD: " + a.democraticPercentage.ToString() + "\n" + "R: " + a.republicanPercentage.ToString() + "\n" + "I: " + a.otherPercentage.ToString() + "\n\n" +
                         nebraskaOne.name + "\n" + nebraskaOne.finalResult + "\n" + nebraskaOne.winningMargin.complete + "\n\n" +
+                        "\n\nD: " + nebraskaOne.democraticPercentage.ToString() + "\n" + "R: " + nebraskaOne.republicanPercentage.ToString() + "\n" + "I: " + nebraskaOne.otherPercentage.ToString() + "\n\n" +
                         nebraskaTwo.name + "\n" + nebraskaTwo.finalResult + "\n" + nebraskaTwo.winningMargin.complete + "\n\n" +
-                        nebraskaThree.name + "\n" + nebraskaThree.finalResult + "\n" + nebraskaThree.winningMargin.complete;
+                        "\n\nD: " + nebraskaTwo.democraticPercentage.ToString() + "\n" + "R: " + nebraskaTwo.republicanPercentage.ToString() + "\n" + "I: " + nebraskaTwo.otherPercentage.ToString() + "\n\n" +
+                        nebraskaThree.name + "\n" + nebraskaThree.finalResult + "\n" + nebraskaThree.winningMargin.complete +
+                        "\n\nD: " + nebraskaThree.democraticPercentage.ToString() + "\n" + "R: " + nebraskaThree.republicanPercentage.ToString() + "\n" + "I: " + nebraskaThree.otherPercentage.ToString();
+
                 }
 
 
-                return a.name + "\n" + a.finalResult + "\n" + a.winningMargin.complete;
+                return a.name + "\n" + a.finalResult + "\n" + a.winningMargin.complete + "\n\n" +
+                    "D: " + a.democraticPercentage.ToString() + "\n" + "R: " + a.republicanPercentage.ToString() + "\n" + "I: " + a.otherPercentage.ToString();
             }
             else if (a.shortName == x && a.type == "House")
             {
-                return a.name + "\n" + a.finalResult + "\n" + a.winningMargin.complete;
+                return a.name + "\n" + a.finalResult + "\n" + a.winningMargin.complete +
+                    "\n\nD: " + a.democraticPercentage.ToString() + "\n" + "R: " + a.republicanPercentage.ToString() + "\n" + "I: " + a.otherPercentage.ToString();
             }
             else
             {
                 continue;
             }
         }
+        return "Not up for election.";
         
-        return "shouldn't be here!!";
     }
 
 

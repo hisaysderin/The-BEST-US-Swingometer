@@ -190,7 +190,8 @@ namespace The_BEST_US_Swingometer
 
             else // any scenario the program can't handle
             {
-                throw new Exception("Something went wrong when checking out who won. One or more values have tied and the program can't handle this.");
+                MessageBox.Show("Tie error, please adjust values", "Tie error");
+                return tempArea;
             }
         }
 
@@ -226,6 +227,7 @@ namespace The_BEST_US_Swingometer
                 {
                     Democrats.CalculateSenate();
                     Republicans.CalculateSenate();
+                    Others.CalculateSenate();
                 }
             }
             else //for the house, we do the state by state results, and then for each district we use the state change
@@ -235,40 +237,11 @@ namespace The_BEST_US_Swingometer
                     OutputAreas.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
                 }
 
-                //foreach (Area singleInputArea in inputAreas)
-                //{
-                //    inputHouseStates.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
-                //    midHouseStates.Add(singleInputArea);
-                //}
-
-                //Files.filePath = "..\\..\\house_by_district.csv";
-                //Files.ParseFile("House");
-                //inputAreas = Files.fileAreas;
-
-                //foreach (Area singleInputArea in inputAreas)
-                //{
-                //    foreach (Area state in inputHouseStates)
-                //    {
-                //        //MessageBox.Show((singleInputArea.state == state.name).ToString());
-                //        if (singleInputArea.state == state.name)
-                //        {
-
-                //            // the big numbers are necessary, but not used (they are padding)
-                //            // they are big so if something goes wrong its very obvious
-
-                //            OutputAreas.Add(Swingometer(singleInputArea, new List<double>{1000000.0, state.democraticPercentage - midHouseStates[counter].democraticPercentage, 1000000.0},
-                //                new List<double> {1000000.0, state.republicanPercentage - midHouseStates[counter].republicanPercentage, 1000000.0 },
-                //                new List<double> {1000000.0, state.otherPercentage - midHouseStates[counter].otherPercentage, 1000000.0}));
-
-                //            counter += 1;
-                //        }
-
-
-                //    }
             }
 
             Democrats.CalculateHouseChange();
             Republicans.CalculateHouseChange();
+            Others.CalculateHouseChange();
 
             
         }
