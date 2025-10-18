@@ -50,7 +50,7 @@ namespace The_BEST_US_Swingometer
             double inputR;
             double inputI;
 
-            if (textBox1.Text.Length > 0 && textBox2.Text.Length > 0 && textBox3.Text.Length > 0 && comboBox1.Text.Length > 0)
+            if (textBox1.Text.Length > 0 && textBox2.Text.Length > 0 && textBox3.Text.Length > 0 && comboBox1.Text.Length > 0 && comboBox2.Text.Length > 0)
             {
                 try
                 {
@@ -74,6 +74,7 @@ namespace The_BEST_US_Swingometer
                 logic.inputI = inputI;
 
                 logic.Setup();
+                logic.colourMode = comboBox2.Text;
 
                 logic.GetOutput(comboBox1.SelectedIndex);
 

@@ -18,6 +18,8 @@ namespace The_BEST_US_Swingometer
         public Area tempArea;
         public List<Area> fileAreas = new List<Area>();
 
+        public string colourMode;
+
         public void ParseFile(string Type)
         {
             fileContents = File.ReadAllText(filePath);
@@ -34,17 +36,17 @@ namespace The_BEST_US_Swingometer
                 {
                     case "Presidential":
                         fileAreas.Add(new Area(dataPoints[0], dataPoints[1], "Presidential", Convert.ToInt16(dataPoints[2]), dataPoints[3],
-                    Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5]), Convert.ToDouble(dataPoints[6])));
+                    Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5]), Convert.ToDouble(dataPoints[6]), colourMode));
                         break;
 
                     case "Senate":
                         fileAreas.Add(new Area(dataPoints[0], dataPoints[1], "Senate", 1, dataPoints[2],
-                    Convert.ToDouble(dataPoints[3]), Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5])));
+                    Convert.ToDouble(dataPoints[3]), Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5]), colourMode));
                         break;
 
                     case "House":
                         tempArea = new Area(dataPoints[0], dataPoints[1], "House", 1, dataPoints[3],
-                    Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5]), Convert.ToDouble(dataPoints[6]));
+                    Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5]), Convert.ToDouble(dataPoints[6]), colourMode);
                         tempArea.state = dataPoints[2];
 
                         fileAreas.Add(tempArea);
@@ -52,7 +54,7 @@ namespace The_BEST_US_Swingometer
 
                     case "Meta":
                         fileAreas.Add(new Area(dataPoints[0], dataPoints[1], "Meta", 1, dataPoints[2],
-                    Convert.ToDouble(dataPoints[3]), Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5])));
+                    Convert.ToDouble(dataPoints[3]), Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5]), colourMode));
                         break;
                 }
             }

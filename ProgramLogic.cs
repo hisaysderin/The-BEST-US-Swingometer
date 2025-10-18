@@ -30,13 +30,15 @@ namespace The_BEST_US_Swingometer
 
         public List<Area> OutputAreas = new List<Area>();
 
+        public string colourMode;
+
         public void Setup()
         {
 
             // GOP data
             Republicans.name = "GOP";
 
-            Republicans.userPercentage = inputR; //CHANGE THIS WHEN WE DO THE GUI
+            Republicans.userPercentage = inputR;
             Republicans.lastPercentages = new List<double> { 49.8, 49.8, 49.3};
             Republicans.CalculateSwing();
 
@@ -60,7 +62,7 @@ namespace The_BEST_US_Swingometer
             // OTH data
             Others.name = "OTH";
 
-            Others.userPercentage = inputI; //CHANGE THIS WHEN WE DO THE GUI
+            Others.userPercentage = inputI;
             Others.lastPercentages = new List<double> { 1.9, 3.0, 3.2};
             Others.CalculateSwing();
 
@@ -95,9 +97,8 @@ namespace The_BEST_US_Swingometer
             tempArea = new Area(currentArea.name, currentArea.shortName, currentArea.type, currentArea.electoralValue, currentArea.previousWinner,
                 currentArea.republicanPercentage + inputGop[mode],
                 currentArea.democraticPercentage + inputDem[mode],
-                currentArea.otherPercentage + inputOth[mode]);
-            tempArea.CalculateMargin();
-            tempArea.GetColour();
+                currentArea.otherPercentage + inputOth[mode], colourMode);
+            
 
             if (currentArea.state != null)
             {
@@ -123,11 +124,15 @@ namespace The_BEST_US_Swingometer
                 if (currentArea.previousWinner == "GOP") // a hold
                 {
                     tempArea.finalResult = "GOP hold";
+                    tempArea.CalculateMargin();
+                    tempArea.GetColour();
                     return tempArea;
                 }
                 else // a gain
                 {
                     tempArea.finalResult = "GOP gain from " + currentArea.previousWinner;
+                    tempArea.CalculateMargin();
+                    tempArea.GetColour();
                     return tempArea;
                 }
             }
@@ -151,11 +156,15 @@ namespace The_BEST_US_Swingometer
                 if (currentArea.previousWinner == "DEM") // a hold
                 {
                     tempArea.finalResult = "DEM hold";
+                    tempArea.CalculateMargin();
+                    tempArea.GetColour();
                     return tempArea;
                 }
                 else // a gain
                 {
                     tempArea.finalResult = "DEM gain from " + currentArea.previousWinner;
+                    tempArea.CalculateMargin();
+                    tempArea.GetColour();
                     return tempArea;
                 }
             }
@@ -179,11 +188,15 @@ namespace The_BEST_US_Swingometer
                 if (currentArea.previousWinner == "OTH") // a hold
                 {
                     tempArea.finalResult = "OTH hold";
+                    tempArea.CalculateMargin();
+                    tempArea.GetColour();
                     return tempArea;
                 } 
                 else // a gain
                 {
                     tempArea.finalResult = "OTH gain from " + currentArea.previousWinner;
+                    tempArea.CalculateMargin();
+                    tempArea.GetColour();
                     return tempArea;
                 }
             }
