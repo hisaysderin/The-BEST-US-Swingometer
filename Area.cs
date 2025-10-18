@@ -117,7 +117,7 @@ namespace The_BEST_US_Swingometer
             share_colourDict.Add((winnersPercentage >= 90).ToString() + "7", new string[] { "#002B84" , "#800000" , "#8C2D04" });
 
             gains_colourDict.Add((finalResult.Contains("hold")).ToString() + "0", new string[] { "#92C5DE" , "#F48882" , "#F2BFA6" });
-            gains_colourDict.Add((finalResult.Contains("gain")).ToString() + "1", new string[] { "#0671B0" , "#CA0120" , "#E27036" });
+            gains_colourDict.Add((finalResult.Contains("gain")).ToString() + "1", new string[] { "#0671B0" , "#CA0120" , "#FFD700" });
         }
             
         public void GetColour()
