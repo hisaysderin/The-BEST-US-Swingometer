@@ -117,10 +117,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="house_by_district.csv" />
-    <None Include="house_by_state.csv" />
+    <None Include="csv\house_by_district.csv" />
+    <None Include="csv\house_by_state.csv" />
     <None Include="packages.config" />
-    <None Include="presidential.csv" />
+    <None Include="csv\presidential.csv" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -130,7 +130,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="senate.csv" />
+    <None Include="csv\senate.csv" />
     <None Include="shapefile\house\congress.dbf" />
     <None Include="shapefile\house\congress.prj" />
     <None Include="shapefile\house\congress.shp" />

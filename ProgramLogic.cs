@@ -213,15 +213,15 @@ namespace The_BEST_US_Swingometer
             switch (mode)
             {
                 case 0:
-                    Files.filePath = "..\\..\\presidential.csv";
+                    Files.filePath = "..\\..\\csv\\presidential.csv";
                     Files.ParseFile("Presidential");
                     break;
                 case 1:
-                    Files.filePath = "..\\..\\house_by_district.csv";
+                    Files.filePath = "..\\..\\csv\\house_by_district.csv";
                     Files.ParseFile("House");
                     break;
                 case 2:
-                    Files.filePath = "..\\..\\senate.csv";
+                    Files.filePath = "..\\..\\csv\\senate.csv";
                     Files.ParseFile("Senate");
                     break;
             }
