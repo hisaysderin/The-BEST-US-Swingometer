@@ -24,10 +24,6 @@ namespace The_BEST_US_Swingometer
         public FileHandler Files = new FileHandler();
         public List<Area> inputAreas = new List<Area>();
 
-        public List<Area> inputHouseStates = new List<Area>(); // only used when calculating house results
-        public List<Area> midHouseStates = new List<Area>(); // used to calculate swings
-        public int counter = 0;
-
         public List<Area> OutputAreas = new List<Area>();
 
         public string colourMode;
@@ -39,7 +35,7 @@ namespace The_BEST_US_Swingometer
             Republicans.name = "GOP";
 
             Republicans.userPercentage = inputR;
-            Republicans.lastPercentages = new List<double> { 49.8, 49.8, 49.3};
+            Republicans.lastPercentages = new List<double> { 49.8, 49.8, 49.3, 49.1};
             Republicans.CalculateSwing();
 
             Republicans.lastElectoralVote = 312;
@@ -47,11 +43,14 @@ namespace The_BEST_US_Swingometer
             Republicans.lastSenateSeats = 53;
             Republicans.heldSenateSeats = 31;
 
+            Republicans.lastGovernorSeats = 27;
+            Republicans.heldGovernorSeats = 8;
+
             // DEM data
             Democrats.name = "DEM";
 
             Democrats.userPercentage = inputD;
-            Democrats.lastPercentages = new List<double> { 48.3, 47.2, 47.0};
+            Democrats.lastPercentages = new List<double> { 48.3, 47.2, 47.0, 49.3};
             Democrats.CalculateSwing();
 
             Democrats.lastElectoralVote = 226;
@@ -59,11 +58,14 @@ namespace The_BEST_US_Swingometer
             Democrats.lastSenateSeats = 45;
             Democrats.heldSenateSeats = 32;
 
+            Democrats.lastGovernorSeats = 23;
+            Democrats.heldGovernorSeats = 6;
+
             // OTH data
             Others.name = "OTH";
 
             Others.userPercentage = inputI;
-            Others.lastPercentages = new List<double> { 1.9, 3.0, 3.2};
+            Others.lastPercentages = new List<double> { 1.9, 3.0, 3.2, 1.7};
             Others.CalculateSwing();
 
             Others.lastElectoralVote = 0;
@@ -71,7 +73,9 @@ namespace The_BEST_US_Swingometer
             Others.lastSenateSeats = 2;
             Others.heldSenateSeats = 2;
 
-            counter = 0;
+            Others.lastGovernorSeats = 0;
+            Others.heldGovernorSeats = 0;
+
         }
 
         // the program will cycle through a list of areas, doing this function on each of them, producing a new list of areas
@@ -91,6 +95,10 @@ namespace The_BEST_US_Swingometer
 
                 case "Senate":
                     mode = 2;
+                    break;
+
+                case "Governors":
+                    mode = 3;
                     break;
             }
 
@@ -118,6 +126,9 @@ namespace The_BEST_US_Swingometer
                         break;
                     case "Senate":
                         Republicans.newSenateSeats += 1;
+                        break;
+                    case "Governors":
+                        Republicans.newGovernorSeats += 1;
                         break;
                 }
 
@@ -151,6 +162,9 @@ namespace The_BEST_US_Swingometer
                     case "Senate":
                         Democrats.newSenateSeats += 1;
                         break;
+                    case "Governors":
+                        Democrats.newGovernorSeats += 1;
+                        break;
                 }
 
                 if (currentArea.previousWinner == "DEM") // a hold
@@ -183,6 +197,9 @@ namespace The_BEST_US_Swingometer
                     case "Senate":
                         Others.newSenateSeats += 1;
                         break;
+                    case "Governors":
+                        Others.newGovernorSeats += 1;
+                        break;
                 }
                 
                 if (currentArea.previousWinner == "OTH") // a hold
@@ -208,7 +225,7 @@ namespace The_BEST_US_Swingometer
             }
         }
 
-        public void GetOutput(int mode) // 0 for pres, 1 for house, 2 for senate
+        public void GetOutput(int mode) // 0 for pres, 1 for house, 2 for senate, 3 for governor
         {
             switch (mode)
             {
@@ -224,37 +241,39 @@ namespace The_BEST_US_Swingometer
                     Files.filePath = "..\\..\\csv\\senate.csv";
                     Files.ParseFile("Senate");
                     break;
+                case 3:
+                    Files.filePath = "..\\..\\csv\\governors.csv";
+                    Files.ParseFile("Governors");
+                    break;
             }
 
             inputAreas = Files.fileAreas;
 
-            if (mode != 1)
+            foreach (Area singleInputArea in inputAreas)
             {
-                foreach (Area singleInputArea in inputAreas)
-                {
-                    OutputAreas.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
-
-                }
-
-                if (mode == 2)
-                {
-                    Democrats.CalculateSenate();
-                    Republicans.CalculateSenate();
-                    Others.CalculateSenate();
-                }
-            }
-            else //for the house, we do the state by state results, and then for each district we use the state change
-            {
-                foreach (Area singleInputArea in inputAreas)
-                {
-                    OutputAreas.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
-                }
+                OutputAreas.Add(Swingometer(singleInputArea, Democrats.newPercentages, Republicans.newPercentages, Others.newPercentages));
 
             }
 
-            Democrats.CalculateHouseChange();
-            Republicans.CalculateHouseChange();
-            Others.CalculateHouseChange();
+            if (mode == 2)
+            {
+                Democrats.CalculateSenate();
+                Republicans.CalculateSenate();
+                Others.CalculateSenate();
+            }
+            else if (mode == 1)
+            {
+                Democrats.CalculateHouseChange();
+                Republicans.CalculateHouseChange();
+                Others.CalculateHouseChange();
+            }
+            else if (mode == 3)
+            {
+                Democrats.CalculateGovernorChange();
+                Republicans.CalculateGovernorChange();
+                Others.CalculateGovernorChange();
+            }
+            
 
             
         }

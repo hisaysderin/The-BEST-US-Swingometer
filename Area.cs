@@ -118,8 +118,7 @@ namespace The_BEST_US_Swingometer
 
             gains_colourDict.Add((finalResult.Contains("hold")).ToString() + "0", new string[] { "#92C5DE" , "#F48882" , "#F2BFA6" });
             gains_colourDict.Add((finalResult.Contains("gain")).ToString() + "1", new string[] { "#0671B0" , "#CA0120" , "#FFD700" });
-        }
-            
+        }           
         public void GetColour()
         {
             InitDictionaries();

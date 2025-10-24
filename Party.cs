@@ -11,7 +11,7 @@ namespace The_BEST_US_Swingometer
         public string name;
         public double userPercentage;
 
-        public List<double> lastPercentages = new List<double>(); // order: President, House, Senate
+        public List<double> lastPercentages = new List<double>(); // order: President, House, Senate, Governor
         public List<double> newPercentages = new List<double>();
 
         public int lastElectoralVote;
@@ -25,6 +25,11 @@ namespace The_BEST_US_Swingometer
         public int heldSenateSeats; // some seats are not up for re-election
         public int newSenateSeats = 0;  // only seats contested
         public int totalSenateSeats;
+
+        public int lastGovernorSeats;
+        public int heldGovernorSeats;
+        public int newGovernorSeats = 0;
+        public int totalGovernorSeats;
 
         public void CalculateSwing()
         {
@@ -41,6 +46,10 @@ namespace The_BEST_US_Swingometer
         public void CalculateHouseChange()
         {
             houseChange = newHouseSeats - lastHouseSeats;
+        }
+        public void CalculateGovernorChange()
+        {
+            totalGovernorSeats = newGovernorSeats + heldGovernorSeats;
         }
     }
 }

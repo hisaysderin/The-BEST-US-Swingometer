@@ -52,9 +52,9 @@ namespace The_BEST_US_Swingometer
                         fileAreas.Add(tempArea);
                         break;
 
-                    case "Meta":
-                        fileAreas.Add(new Area(dataPoints[0], dataPoints[1], "Meta", 1, dataPoints[2],
-                    Convert.ToDouble(dataPoints[3]), Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5]), colourMode));
+                    case "Governors":
+                        fileAreas.Add(new Area(dataPoints[0], dataPoints[1], "Governors", 1, dataPoints[2],
+                            Convert.ToDouble(dataPoints[3]), Convert.ToDouble(dataPoints[4]), Convert.ToDouble(dataPoints[5]), colourMode));
                         break;
                 }
             }

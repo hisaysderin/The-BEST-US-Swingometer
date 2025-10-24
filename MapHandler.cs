@@ -33,7 +33,7 @@ namespace The_BEST_US_Swingometer
             {
                 theMap.ClearShapeFiles();
 
-                if (x.type == "Presidential" | x.type == "Senate")
+                if (x.type == "Presidential" | x.type == "Senate" | x.type == "Governors")
                 {
                     areaDic.Add(x.name, x.realColour);
                     att = "NAME";

@@ -66,7 +66,7 @@ public class CustomColour : ICustomRenderSettings
 
         foreach (Area a in areas)
         {
-            if (a.name == x && (a.type == "Presidential" | a.type == "Senate"))
+            if (a.name == x && (a.type == "Presidential" | a.type == "Senate" | a.type == "Governors"))
             {
                 if (a.name == "Maine" && a.type == "Presidential")
                 {

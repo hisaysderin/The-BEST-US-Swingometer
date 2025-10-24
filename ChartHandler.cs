@@ -27,7 +27,7 @@ namespace The_BEST_US_Swingometer
         public double gopPercentage;
         public double othPercentage;
 
-        public List<int> totals = new List<int> {538, 435, 100};
+        public List<int> totals = new List<int> {538, 435, 100, 50};
 
         public ChartHandler(Panel panel1, Panel panel2, Panel panel3, Party dem, Party gop, Party oth, int mode, 
             Label label1, Label label2, Label label3)
@@ -80,6 +80,17 @@ namespace The_BEST_US_Swingometer
                     label1.Text = dem.totalSenateSeats.ToString();
                     label2.Text = gop.totalSenateSeats.ToString();
                     label3.Text = oth.totalSenateSeats.ToString();
+
+                    break;
+
+                case 3:
+                    demPercentage = (double)dem.totalGovernorSeats / (double)totals[3];
+                    gopPercentage = (double)gop.totalGovernorSeats / (double)totals[3];
+                    othPercentage = (double)oth.totalGovernorSeats / (double)totals[3];
+
+                    label1.Text = dem.totalGovernorSeats.ToString();
+                    label2.Text = gop.totalGovernorSeats.ToString();
+                    label3.Text = oth.totalGovernorSeats.ToString();
 
                     break;
             }

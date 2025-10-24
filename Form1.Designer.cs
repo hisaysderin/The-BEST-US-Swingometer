@@ -114,13 +114,13 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Presidential",
             "House",
-            "Senate"});
+            "Senate",
+            "Governors"});
             this.comboBox1.Location = new System.Drawing.Point(654, 178);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(81, 21);
             this.comboBox1.TabIndex = 6;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label3
             // 

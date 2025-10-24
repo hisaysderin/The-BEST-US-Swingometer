@@ -117,6 +117,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="csv\governors.csv" />
     <None Include="csv\house_by_district.csv" />
     <None Include="csv\house_by_state.csv" />
     <None Include="packages.config" />

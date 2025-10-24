@@ -36,13 +36,6 @@ namespace The_BEST_US_Swingometer
             textBox3.Clear();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //textBox1.Clear();
-            //textBox2.Clear();
-            //textBox3.Clear();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             ProgramLogic logic = new ProgramLogic();
@@ -92,17 +85,13 @@ namespace The_BEST_US_Swingometer
 
             MapHandler theMap = null;
 
-            switch (comboBox1.SelectedIndex)
+            if (comboBox1.SelectedIndex == 1)
             {
-                case 0:
-                    theMap = new MapHandler(sfMap1, "..\\..\\shapefile\\test\\cb_2018_us_state_500k.shp", logic.OutputAreas);
-                    break;
-                case 2:
-                    theMap = new MapHandler(sfMap1, "..\\..\\shapefile\\test\\cb_2018_us_state_500k.shp", logic.OutputAreas);
-                    break;
-                case 1:
-                    theMap = new MapHandler(sfMap1, "..\\..\\shapefile\\house\\congress.shp", logic.OutputAreas);
-                    break;
+                theMap = new MapHandler(sfMap1, "..\\..\\shapefile\\house\\congress.shp", logic.OutputAreas);
+            }
+            else
+            {
+                theMap = new MapHandler(sfMap1, "..\\..\\shapefile\\test\\cb_2018_us_state_500k.shp", logic.OutputAreas);
             }
             
             theMap.Colouring();
