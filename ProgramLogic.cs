@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Cryptography.X509Certificates;
@@ -227,22 +228,24 @@ namespace The_BEST_US_Swingometer
 
         public void GetOutput(int mode) // 0 for pres, 1 for house, 2 for senate, 3 for governor
         {
+            string csvPath = ConfigurationManager.AppSettings["csvFolder"];
+
             switch (mode)
             {
                 case 0:
-                    Files.filePath = "..\\..\\csv\\presidential.csv";
+                    Files.filePath = csvPath + "\\presidential.csv";
                     Files.ParseFile("Presidential");
                     break;
                 case 1:
-                    Files.filePath = "..\\..\\csv\\house_by_district.csv";
+                    Files.filePath = csvPath + "\\house_by_district.csv";
                     Files.ParseFile("House");
                     break;
                 case 2:
-                    Files.filePath = "..\\..\\csv\\senate.csv";
+                    Files.filePath = csvPath + "\\senate.csv";
                     Files.ParseFile("Senate");
                     break;
                 case 3:
-                    Files.filePath = "..\\..\\csv\\governors.csv";
+                    Files.filePath = csvPath + "\\governors.csv";
                     Files.ParseFile("Governors");
                     break;
             }

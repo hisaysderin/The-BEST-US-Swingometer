@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -83,15 +84,16 @@ namespace The_BEST_US_Swingometer
                 return;
             }
 
-            MapHandler theMap = null;
+            MapHandler theMap;
+            string mapPath = ConfigurationManager.AppSettings["mapFolder"];
 
             if (comboBox1.SelectedIndex == 1)
             {
-                theMap = new MapHandler(sfMap1, "..\\..\\shapefile\\house\\congress.shp", logic.OutputAreas);
+                theMap = new MapHandler(sfMap1, mapPath + "\\house\\congress.shp", logic.OutputAreas);
             }
             else
             {
-                theMap = new MapHandler(sfMap1, "..\\..\\shapefile\\test\\cb_2018_us_state_500k.shp", logic.OutputAreas);
+                theMap = new MapHandler(sfMap1, mapPath + "\\test\\cb_2018_us_state_500k.shp", logic.OutputAreas);
             }
             
             theMap.Colouring();
