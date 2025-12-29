@@ -267,6 +267,8 @@
             this.Controls.Add(this.textBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(862, 574);
+            this.MinimumSize = new System.Drawing.Size(862, 574);
             this.Name = "Form1";
             this.Text = "The US Swingometer";
             this.ResumeLayout(false);
